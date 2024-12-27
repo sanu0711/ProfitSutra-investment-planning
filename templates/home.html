@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Home
+{% endblock title %}
+
+{% block main %}
+   <!-- Hero Section -->
+   <section id="hero" class="mt-4">
+    <div class="container" data-aos="zoom-out" data-aos-delay="200">
+      <div class="row gy-4">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" >
+          <h1>Welcome to ProfitSutra</h1>
+          <p>Empowering Your Financial Future with AI-Driven Insights</p>
+          <div>
+            <a href="" class="btn btn-secondary mt-3">Start My Investment Journey</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img">
+          <img src="{% static 'img\hero-img.png' %}" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- /Hero Section -->
+
+<div class="container">
+    <section id="features" class="mt-5" >
+
+        <h2 class="text-center mb-4">Why Choose ProfitSutra?</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card shadow h-100" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card-body">
+                        <img src="{% static 'img\home1.jpeg' %}" class="card-img-top rounded" alt="...">
+                        <h5 class="card-title mt-2">AI-Powered Insights</h5>
+                        <p class="card-text">Tailored investment strategies aligned with your financial goals.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow h-100" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card-body">
+                        <img src="{% static 'img\home2.jpeg' %}" class="card-img-top rounded" alt="...">
+                        <h5 class="card-title mt-2">Interactive Dashboard</h5>
+                        <p class="card-text">Track performance and explore new investment opportunities in real time.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow h-100" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card-body">
+                        <img src="{% static 'img\home3.jpeg' %}" class="card-img-top rounded" alt="...">
+                        <h5 class="card-title mt-2">Secure & Private</h5>
+                        <p class="card-text">We prioritize your data security and privacy with state-of-the-art encryption.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+
+</div>
+{% endblock main %}
