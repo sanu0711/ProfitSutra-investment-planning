@@ -6,8 +6,12 @@ from django.contrib import messages
 def home(request):
     return render(request, 'home.html')
 
+def chatbot_view(request):
+    return render(request, 'chatbot.html')
+
 def questionnaire_view(request):
     if request.method == 'POST':
         messages.success(request, "Your responses have been recorded successfully!")
         return redirect('home')
     return render(request, 'questionnaire.html')
+
