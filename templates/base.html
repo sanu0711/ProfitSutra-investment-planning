@@ -52,10 +52,10 @@
                 <a class="nav-link" href="{% url 'chatbot' %}">ChatBot</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">DashBoard</a>
+                <a class="nav-link" href="{% url 'dashboard' %}">DashBoard</a>
               </li>
                 <li class="nav-item ms-2">
-                  {% if user.is_authenticated %}
+                  {% if request.user.is_authenticated %}
                   <a class="d-flex align-items-center btn" href="#">
                     <img src="{% static 'img/default-profile.jpg' %}" alt="Profile" class="rounded-circle" height="30" width="30">
                     <span class="ms-2">{{ user.username }}</span>
