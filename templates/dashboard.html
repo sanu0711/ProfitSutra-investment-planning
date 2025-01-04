@@ -9,25 +9,32 @@ DashBoard
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> 
 <div class="container mt-4">
     <!-- Key Metrics Overview -->
+    <h3 class="my-4">Welcome, <span class="text-muted">{{user.first_name}} {{user.last_name}}</span> !</h3>
     <div class="row gy-4 text-center">
-      <div class="col-6 col-md-3">
-        <div class="card h-100">
+      <div class="col-12 col-md-3">
+        <div class="card">
           <div class="card-body text-success">
             <i class="bi bi-bank h1 "></i>
-            <h5>Total Income</h5>
-            <p>₹150,000</p>
+            <h5>Monthly Income</h5>
+            <p>₹{{user_info.income_details__monthly_income}}</p>
           </div>
         </div>
       </div>
-      <div class="col-6 col-md-3">
-        <div class="card h-100">
+      <div class="col-12 col-md-3">
+        <div class="card">
           <div class="card-body text-danger">
             <i class="bi bi-currency-rupee h1 "></i>
             <h5>Total Expenses</h5>
-            <p>₹100,000</p>
+            <p>₹{{total_expense}}</p>
           </div>
         </div>
       </div>
+      <div class="col-12 col-md-6">
+        <h4 class="text-start">Expense Breakdown</h4>
+        <div id="chartPie"></div>
+        <!-- Pie Chart here -->
+      </div>
+      {% comment %} 
       <div class="col-6 col-md-3">
         <div class="card h-100">
           <div class="card-body text-info">
@@ -37,6 +44,9 @@ DashBoard
           </div>
         </div>
       </div>
+      {% endcomment %}
+
+      {% comment %}  
       <div class="col-6 col-md-3">
         <div class="card h-100">
           <div class="card-body">
@@ -46,42 +56,16 @@ DashBoard
           </div>
         </div>
       </div>
+      {% endcomment %}
     </div>
   
     <!-- Expense Breakdown Chart -->
+     {% comment %} 
     <div class="row my-4">
       <div class="col-12 col-md-6">
         <h4>Expense Breakdown</h4>
         <div id="chartPie"></div>
         <!-- Pie Chart here -->
-         <script>
-            var options = {
-                series: [44, 55, 13, 43, 22],
-                chart: {
-                width: 380,
-                type: 'pie',
-               
-              },
-              legend: {
-                position: 'bottom'
-              },
-              labels: ['Rent', 'Groceries', 'Utilities', 'Transportation', 'Entertainment'],
-              responsive: [{
-                breakpoint: 480,
-                options: {
-                  chart: {
-                    width: 320
-                  },
-                  legend: {
-                    position: 'bottom'
-                  }
-                }
-              }]
-              };
-      
-              var chart = new ApexCharts(document.querySelector("#chartPie"), options);
-              chart.render();
-         </script>
       </div>
 
         <!-- Income vs Expense Chart -->
@@ -142,8 +126,37 @@ DashBoard
             </script>
         </div>
     </div>
+     {% endcomment %}
 </div>
 
+<script>
+  var options = {
+      series: {{ expense_data.values|safe }},
+      chart: {
+      height: 380,
+      type: 'pie',
+     
+    },
+    legend: {
+      position: 'right'
+    },
+    labels: {{ expense_data.labels|safe }},
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 320
+        },
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }]
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chartPie"), options);
+    chart.render();
+</script>
 <div class="container">
     <h3>AI-Driven Investment Advice</h3>
     

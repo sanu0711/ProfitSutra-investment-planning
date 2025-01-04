@@ -30,7 +30,7 @@ def chatbot_view(request):
             return render(request, 'chatbot.html')    
     return render(request, 'chatbot.html')
   
-  
+   
 def questionnaire_view(request):
     if not request.user.is_authenticated:
         messages.info(request, "Please login to complete the questionnaire")

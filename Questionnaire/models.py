@@ -86,7 +86,7 @@ class SIGoal(models.Model):
         
 
 class UserQus(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     user_name = models.CharField(max_length=100, default='User', null=True, blank=True)
     personal_information = models.ForeignKey(PersonalInformation, on_delete=models.CASCADE, null=True, blank=True)
     income_details = models.ForeignKey(IncomeDetails, on_delete=models.CASCADE, null=True, blank=True)
