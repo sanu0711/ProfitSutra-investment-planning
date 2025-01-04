@@ -211,12 +211,12 @@ def query_p(user_input):
     4. For ranking or retrieving the top results within groups, prefer window functions such as RANK() or ROW_NUMBER() in MySQL 8.0+.
     5. For selecting columns like 'stock_name' along with aggregated values, ensure the query logic includes either a subquery or window function to avoid conflicts with ONLY_FULL_GROUP_BY.
     6. Avoid common SQL syntax issues and ensure all column names, conditions, and clauses are valid for MySQL.
-
+    7. show only revelent columns in the output based on the user input 
     Transform the following user input into a valid SQL query:
 
     User Input: {user_input}
 
-    Output only the SQL query without any additional text, including the database name for example:- 'SELECT Stock FROM stock_data.stocks ORDER BY MarketCap DESC'
+    Output only the SQL query without any additional text, including the database name for example:- 'SELECT Stock FROM stockdata ORDER BY MarketCap DESC'
     """
         )
     )

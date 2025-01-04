@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+from Questionnaire.models import UserQus
 
 def sign_up(request):
     if request.method == 'POST':
@@ -30,7 +32,12 @@ def sign_up(request):
             last_name=lname
             )
         user.save()
-        
+        try:
+            UserQus.objects.create(user=user,user_name=username)
+        except Exception as e:
+            messages.error(request, "An error occurred while creating your account.")
+            return redirect('sign_up')
+            
         messages.success(request, "Your account has been created successfully!")
         return redirect('sign_in')  # Redirect to a success page, e.g., home
 
