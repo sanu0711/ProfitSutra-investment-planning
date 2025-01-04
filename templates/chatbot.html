@@ -32,7 +32,25 @@ Chatbot
                     <br>
                     <div class="text-start">
                         <p><img src="{% static 'img/logo/android-icon-192x192.png' %}" alt="Logo" width="25" height="25" class="d-inline-block align-text-center rounded-circle"></p>
-                        <p>{{ response|safe }}</p>
+                      
+
+                        {% comment %} <p>{{ response|safe }}</p> {% endcomment %}
+                         <table class="table table-bordered table-striped">
+                            <tr>
+                                {% for data in response.columns %}
+                                <th>{{ data }}</th>
+                                {% endfor %}
+                            </tr>
+                            {% for d in response.data %}
+                            <tr>
+                                {% for i in d %}
+                                <td>{{ i }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+    
+                           
+                         </table>
                     </div>
                 </div>
                 
@@ -40,10 +58,10 @@ Chatbot
                 {% else %}
                 <div class="container mt-5">
                     <div class="row justify-content-center align-content-center">
-                        <div class="col-5 mx-2 alert alert-danger sugg" data-aos="zoom-in" data-aos-delay="100">Top Stock to Invest in 2024</div>
-                        <div class="col-5 mx-2 alert alert-success sugg" data-aos="zoom-in" data-aos-delay="200" >Top Stock of November 2024</div>
-                        <div class="col-5 mx-2 alert alert-warning sugg" data-aos="zoom-in" data-aos-delay="300">Which Stock will be best for 2025</div>
-                        <div class="col-5 mx-2 alert alert-info sugg" data-aos="zoom-in" data-aos-delay="400">How to Invest in Stock Market</div>
+                        <div class="col-5 mx-2 alert alert-danger sugg" data-aos="zoom-in" data-aos-delay="100">top 10 stocks having highest marketcap</div>
+                        <div class="col-5 mx-2 alert alert-success sugg" data-aos="zoom-in" data-aos-delay="200" >Top 5 stocks to buy best for profit</div>
+                        <div class="col-5 mx-2 alert alert-warning sugg" data-aos="zoom-in" data-aos-delay="300"> best 20 stocks and their capital and revlent details </div>
+                        <div class="col-5 mx-2 alert alert-info sugg" data-aos="zoom-in" data-aos-delay="400">details of top 10 stocks having highest marketcap</div>
                     </div>
             </div>
 
