@@ -21,9 +21,12 @@ import os
 from decimal import Decimal
 from dashboard.models import StockData
 from django.db import connection
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 model_name = "gemini-1.5-pro"
-GEMINI_API_KEY = "AIzaSyC1YGJ7w9jy-UehVXK-G58R7hIqq2nmUdA"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 def convert_to_float(data):
     if isinstance(data, list):
