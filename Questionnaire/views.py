@@ -1,10 +1,13 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .chatbot import chat_to_query,response_q
+# from .chatbot import response_q
+from .tests import chat_to_query
 
 # Create your views here.
 def home(request):
+    # res = chat_to_query('top 10 stocks having highest marketcap')
+    # print(res)
     return render(request, 'home.html')
 
 def chatbot_view(request):
@@ -14,7 +17,7 @@ def chatbot_view(request):
     if request.method == 'POST':
         question = request.POST.get('question')
         if question:
-            response = response_q(question)
+            response = chat_to_query(question)
             return render(request, 'chatbot.html', {
                 'response': response,
                 'qus': question})
