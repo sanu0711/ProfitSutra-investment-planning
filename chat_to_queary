@@ -1,8 +1,10 @@
+from django.test import TestCase
+import json
+# Create your tests here.
 from mysql.connector import connect, Error
 from langchain_google_genai.chat_models import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-import json
 from decimal import Decimal
 # Database Configuration
 db_config = {
@@ -12,7 +14,14 @@ db_config = {
     'password': 'Khajanchi123',
     'ssl_ca': r"C:\Users\Abhishek Saraswat\Downloads\DigiCertGlobalRootG2.crt.pem"
 }
-
+def convert_to_float(data):
+    if isinstance(data, list):
+        return [convert_to_float(item) for item in data]
+    elif isinstance(data, tuple):
+        return tuple(convert_to_float(item) for item in data)
+    elif isinstance(data, Decimal):
+        return float(data)  # or str(data) if you prefer to keep it as string
+    return data
 
 # Database Connection Setup
 def get_database_connection():
@@ -61,16 +70,6 @@ chat_model = ChatGoogleGenerativeAI(
     temperature=0,
     convert_system_message_to_human=True
 )
-
-# Function to convert Decimal to float
-def convert_to_float(data):
-    if isinstance(data, list):
-        return [convert_to_float(item) for item in data]
-    elif isinstance(data, tuple):
-        return tuple(convert_to_float(item) for item in data)
-    elif isinstance(data, Decimal):
-        return float(data)  # or str(data) if you prefer to keep it as string
-    return data
 
 query_prompt = PromptTemplate(
     input_variables=["user_input"],
@@ -251,6 +250,7 @@ chain = LLMChain(llm=chat_model, prompt=query_prompt)
 
 
 # Function to Generate and Execute SQL Query
+# Function to Generate and Execute SQL Query
 def chat_to_query(user_input):
     try:
         # Convert user input to SQL query
@@ -271,28 +271,35 @@ def chat_to_query(user_input):
 
 
 # Main Function
-def main():
-    print("Welcome to the Stock Filtering Tool!")
-    print("Ask me queries about stocks, and I'll filter them for you.")
+def response_q():
+    user_input = "top 10 stocks having highest marketcap"
+    results = chat_to_query(user_input)
+    return  results
+    # if isinstance(results, str):  # Error message
+    #     print(results)
+    # else:  # Display query results
+    #     if results:
+    #         print("\nFiltered Stocks:")
+    #         for row in results:
+    #             print(row)
+    #     else:
+    #         print("No results found.")
+    # while True:
+    #     user_input = input("\nEnter your query (or type 'exit' to quit): ")
+    #     if user_input.lower() == 'exit':
+    #         print("Goodbye!")
+    #         break
 
-    while True:
-        user_input = input("\nEnter your query (or type 'exit' to quit): ")
-        if user_input.lower() == 'exit':
-            print("Goodbye!")
-            break
-
-        results = chat_to_query(user_input)
-        if isinstance(results, str):  # Error message
-            print(results)
-        else:  # Display query results
-            if results:
-                print("\nFiltered Stocks:")
-                for row in results:
-                    print(row)
-            else:
-                print("No results found.")
+        # results = chat_to_query(user_input)
+        # if isinstance(results, str):  # Error message
+        #     print(results)
+        # else:  # Display query results
+        #     if results:
+        #         print("\nFiltered Stocks:")
+        #         for row in results:
+        #             print(row)
+        #     else:
+        #         print("No results found.")
 
 
-if __name__ == "__main__":
-    main()
 
