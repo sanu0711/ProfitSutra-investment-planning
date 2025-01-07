@@ -17,5 +17,41 @@ The "Investment Planning with Gen AI Bot" is a web application developed using D
 - **Python**: Primary programming language for the backend.
 - **HTML/CSS/JavaScript**: For frontend development.
 - **Bootstrap**: Used for responsive web design.
-- **AI Model**: Integration of Gen AI (e.g., GPT-4 or custom AI models) to analyze financial data and provide investment recommendations.
+- **AI Model**: Integration of Gen AI  to analyze financial data and provide investment recommendations.
 - **Financial Data API**: Used to integrate real-time market data.
+
+## Getting Started
+
+Follow these steps to set up and run the project locally:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sanu0711/ProfitSutra-investment-planning.git
+   ```
+
+2. Navigate to the project directory:
+```bash
+   cd ProfitSutra-investment-planning
+   ```
+
+3. Create and activate a virtual environment:
+```bash
+   python -m venv venv
+   venv/Scripts/activate
+   ```
+
+4. Install project dependencies:
+```bash
+   pip install -r requirements.txt
+   ```
+5. Set up the database migrations:
+```bash
+    python manage.py makemigrations
+    python manage.py migrate
+   ```
+6. Run the development server:
+```bash
+   python manage.py runserver
+   ```
+
+

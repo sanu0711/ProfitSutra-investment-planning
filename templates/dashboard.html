@@ -6,10 +6,15 @@ DashBoard
 {% endblock title %}
 
 {% block main %}
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> 
 <div class="container mt-4">
+  <h2 class="my-4">Welcome, <span class="text-muted">{{user.first_name}} {{user.last_name}}</span> !</h2>
+
     <!-- Key Metrics Overview -->
-    <h3 class="my-4">Welcome, <span class="text-muted">{{user.first_name}} {{user.last_name}}</span> !</h3>
     <div class="row gy-4 text-center">
       <div class="col-12 col-md-3">
         <div class="card">
@@ -133,7 +138,7 @@ DashBoard
   var options = {
       series: {{ expense_data.values|safe }},
       chart: {
-      height: 380,
+      height: 300,
       type: 'pie',
      
     },
@@ -157,10 +162,6 @@ DashBoard
     var chart = new ApexCharts(document.querySelector("#chartPie"), options);
     chart.render();
 </script>
-<div class="container">
-    <h3>AI-Driven Investment Advice</h3>
-    
 
-</div>
   
 {% endblock main %}
