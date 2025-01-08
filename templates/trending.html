@@ -33,317 +33,358 @@ Trending
         </div>
 
         <!-- Main Content -->
-        <div class="col-md-9">
+        <div class="col-md-9 vh-100 overflow-auto">
             <section id="1">
                 <div class="row">
+                    {% for data in undervalued_stocks %}
                     <!-- Stock Card 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">REC Ltd. Section 1</h5>
+                                <h5 class="card-title">{{data.stock_name}}</h5>
+                                <p class="text-muted">{{data.nsecode}}<span class="float-end">{{data.bsecode}}</span></p>
+                             
                                 <div class="row mb-2">
                                     <div class="col-8">Current Price</div>
-                                    <div class="col-4 text-end">570.15</div>
+                                    <div class="col-4 text-end">{{data.current_price}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Net Profit Annual</div>
-                                    <div class="col-4 text-end">14,145.46</div>
+                                    <div class="col-8">Net Profit Annual Percentage</div>
+                                    <div class="col-4 text-end">{{data.net_profit_annual_yoy_growth_percent}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Operating Profit Margin Qtr Percent</div>
-                                    <div class="col-4 text-end">99.29</div>
+                                    <div class="col-8">P/E Annual</div>
+                                    <div class="col-4 text-end">{{data.pe_ttm_price_to_earnings}}</div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-8">ROE Annual Percent</div>
-                                    <div class="col-4 text-end">20.56</div>
+                                    <div class="col-4 text-end">{{data.roe_annual_percent}}</div>
                                 </div>
-                                <button class="btn btn-secondary w-100">Learn More</button>
+                                {% comment %} <button class="btn btn-secondary w-100">Learn More</button> {% endcomment %}
                             </div>
                         </div>
                     </div>
                     <!-- Stock Card 1 -->
+                    {% endfor %}
+                    
     
                 </div>
             </section>
 
             <section id="2">
                 <div class="row">
+                    {% for data in dividend_yield_stocks %}
                     <!-- Stock Card 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">REC Ltd. Section 2</h5>
+                                <h5 class="card-title">{{data.stock_name}}</h5>
+                                <p class="text-muted">{{data.nsecode}}<span class="float-end">{{data.bsecode}}</span></p>
+                             
                                 <div class="row mb-2">
                                     <div class="col-8">Current Price</div>
-                                    <div class="col-4 text-end">570.15</div>
+                                    <div class="col-4 text-end">{{data.current_price}}</div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-8">Net Profit Annual</div>
-                                    <div class="col-4 text-end">14,145.46</div>
+                                    <div class="col-4 text-end">{{data.net_profit_annual}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Operating Profit Margin Qtr Percent</div>
-                                    <div class="col-4 text-end">99.29</div>
+                                    <div class="col-8">P/E Annual</div>
+                                    <div class="col-4 text-end">{{data.pe_ttm_price_to_earnings}}</div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-8">ROE Annual Percent</div>
-                                    <div class="col-4 text-end">20.56</div>
+                                    <div class="col-4 text-end">{{data.roe_annual_percent}}</div>
                                 </div>
-                                <button class="btn btn-secondary w-100">Learn More</button>
+                                {% comment %} <button class="btn btn-secondary w-100">Learn More</button> {% endcomment %}
                             </div>
                         </div>
                     </div>
                     <!-- Stock Card 1 -->
-    
+                    {% endfor %}
                 </div>
             </section>
             
             <section id="3">
                 <div class="row">
+                    {% for data in low_debt_high_return_stocks %}
                     <!-- Stock Card 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">REC Ltd. Section 1</h5>
+                                <h5 class="card-title">{{data.stock_name}}</h5>
+                                <p class="text-muted">{{data.nsecode}}<span class="float-end">{{data.bsecode}}</span></p>
+                             
                                 <div class="row mb-2">
                                     <div class="col-8">Current Price</div>
-                                    <div class="col-4 text-end">570.15</div>
+                                    <div class="col-4 text-end">{{data.current_price}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Net Profit Annual</div>
-                                    <div class="col-4 text-end">14,145.46</div>
+                                    <div class="col-8">ROE Annual Percent</div>
+                                    <div class="col-4 text-end">{{data.roe_annual_percent}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Operating Profit Margin Qtr Percent</div>
-                                    <div class="col-4 text-end">99.29</div>
+                                    <div class="col-8">Sector ROE Return</div>
+                                    <div class="col-4 text-end">{{data.sector_return_on_equity_roe}}</div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-8">ROE Annual Percent</div>
-                                    <div class="col-4 text-end">20.56</div>
+                                    <div class="col-8">Industry ROE Return</div>
+                                    <div class="col-4 text-end">{{data.industry_return_on_equity_roe}}</div>
                                 </div>
-                                <button class="btn btn-secondary w-100">Learn More</button>
+                                {% comment %} <button class="btn btn-secondary w-100">Learn More</button> {% endcomment %}
                             </div>
                         </div>
                     </div>
                     <!-- Stock Card 1 -->
+                    {% endfor %}
     
                 </div>
             </section>
             <section id="4">
                 <div class="row">
+                    {% for data in momentum_stocks %}
                     <!-- Stock Card 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">REC Ltd. Section 1</h5>
+                                <h5 class="card-title">{{data.stock_name}}</h5>
+                                <p class="text-muted">{{data.nsecode}}<span class="float-end">{{data.bsecode}}</span></p>
+                             
                                 <div class="row mb-2">
                                     <div class="col-8">Current Price</div>
-                                    <div class="col-4 text-end">570.15</div>
+                                    <div class="col-4 text-end">{{data.current_price}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Net Profit Annual</div>
-                                    <div class="col-4 text-end">14,145.46</div>
+                                    <div class="col-8">Day SMA 50</div>
+                                    <div class="col-4 text-end">{{data.day_sma_50}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Operating Profit Margin Qtr Percent</div>
-                                    <div class="col-4 text-end">99.29</div>
+                                    <div class="col-8">Day SMA 200</div>
+                                    <div class="col-4 text-end">{{data.day_sma_200}}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-8">Day Volume</div>
+                                    <div class="col-4 text-end">{{data.day_volume}}</div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-8">ROE Annual Percent</div>
-                                    <div class="col-4 text-end">20.56</div>
+                                    <div class="col-8">Month Volume Avg</div>
+                                    <div class="col-4 text-end">{{data.month_volume_avg}}</div>
                                 </div>
-                                <button class="btn btn-secondary w-100">Learn More</button>
+                                {% comment %} <button class="btn btn-secondary w-100">Learn More</button> {% endcomment %}
                             </div>
                         </div>
                     </div>
                     <!-- Stock Card 1 -->
-    
+                    {% endfor %}
                 </div>
             </section>
             <section id="5">
                 <div class="row">
+                    {% for data in higher_insider_holdings %}
                     <!-- Stock Card 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">REC Ltd. Section 1</h5>
+                                <h5 class="card-title">{{data.stock_name}}</h5>
+                                <p class="text-muted">{{data.nsecode}}<span class="float-end">{{data.bsecode}}</span></p>
+                             
                                 <div class="row mb-2">
                                     <div class="col-8">Current Price</div>
-                                    <div class="col-4 text-end">570.15</div>
+                                    <div class="col-4 text-end">{{data.current_price}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Net Profit Annual</div>
-                                    <div class="col-4 text-end">14,145.46</div>
+                                    <div class="col-8">Promoter Holding Latest Percentage</div>
+                                    <div class="col-4 text-end">{{data.promoter_holding_latest_percentage}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Operating Profit Margin Qtr Percent</div>
-                                    <div class="col-4 text-end">99.29</div>
+                                    <div class="col-8">Institutional Holding Current Qtr Percentage</div>
+                                    <div class="col-4 text-end">{{data.institutional_holding_current_qtr_percentage}}</div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-8">ROE Annual Percent</div>
-                                    <div class="col-4 text-end">20.56</div>
-                                </div>
-                                <button class="btn btn-secondary w-100">Learn More</button>
+                                
+                                {% comment %} <button class="btn btn-secondary w-100">Learn More</button> {% endcomment %}
                             </div>
                         </div>
                     </div>
                     <!-- Stock Card 1 -->
-    
+                    {% endfor %}
                 </div>
             </section>
             <section id="6">
                 <div class="row">
+                    {% for data in low_beta_stocks %}
                     <!-- Stock Card 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">REC Ltd. Section 1</h5>
+                                <h5 class="card-title">{{data.stock_name}}</h5>
+                                <p class="text-muted">{{data.nsecode}}<span class="float-end">{{data.bsecode}}</span></p>
+                             
                                 <div class="row mb-2">
                                     <div class="col-8">Current Price</div>
-                                    <div class="col-4 text-end">570.15</div>
+                                    <div class="col-4 text-end">{{data.current_price}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Net Profit Annual</div>
-                                    <div class="col-4 text-end">14,145.46</div>
+                                    <div class="col-8">Beta 1year</div>
+                                    <div class="col-4 text-end">{{data.beta_1year}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Operating Profit Margin Qtr Percent</div>
-                                    <div class="col-4 text-end">99.29</div>
+                                    <div class="col-8">One Year High</div>
+                                    <div class="col-4 text-end">{{data.oneyr_high}}</div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-8">ROE Annual Percent</div>
-                                    <div class="col-4 text-end">20.56</div>
+                                <div class="row mb-2">
+                                    <div class="col-8">One Year Low</div>
+                                    <div class="col-4 text-end">{{data.oneyr_low}}</div>
                                 </div>
-                                <button class="btn btn-secondary w-100">Learn More</button>
+                                
+                                {% comment %} <button class="btn btn-secondary w-100">Learn More</button> {% endcomment %}
                             </div>
                         </div>
                     </div>
                     <!-- Stock Card 1 -->
-    
+                    {% endfor %}
                 </div>
             </section>
             <section id="7">
                 <div class="row">
+                    {% for data in support_level_stocks %}
                     <!-- Stock Card 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">REC Ltd. Section 1</h5>
+                                <h5 class="card-title">{{data.stock_name}}</h5>
+                                <p class="text-muted">{{data.nsecode}}<span class="float-end">{{data.bsecode}}</span></p>
+                             
                                 <div class="row mb-2">
                                     <div class="col-8">Current Price</div>
-                                    <div class="col-4 text-end">570.15</div>
+                                    <div class="col-4 text-end">{{data.current_price}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Net Profit Annual</div>
-                                    <div class="col-4 text-end">14,145.46</div>
+                                    <div class="col-8">First Support S1</div>
+                                    <div class="col-4 text-end">{{data.first_support_s1}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Operating Profit Margin Qtr Percent</div>
-                                    <div class="col-4 text-end">99.29</div>
+                                    <div class="col-8">Second Support S2</div>
+                                    <div class="col-4 text-end">{{data.second_support_s2}}</div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-8">ROE Annual Percent</div>
-                                    <div class="col-4 text-end">20.56</div>
+                                <div class="row mb-2">
+                                    <div class="col-8">Third Support S3</div>
+                                    <div class="col-4 text-end">{{data.third_support_s3}}</div>
                                 </div>
-                                <button class="btn btn-secondary w-100">Learn More</button>
+                                
+                                {% comment %} <button class="btn btn-secondary w-100">Learn More</button> {% endcomment %}
                             </div>
                         </div>
                     </div>
                     <!-- Stock Card 1 -->
-    
+                    {% endfor %}
                 </div>
             </section>
             <section id="8">
                 <div class="row">
+                    {% for data in high_beta_stocks %}
                     <!-- Stock Card 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">REC Ltd. Section 1</h5>
+                                <h5 class="card-title">{{data.stock_name}}</h5>
+                                <p class="text-muted">{{data.nsecode}}<span class="float-end">{{data.bsecode}}</span></p>
+                             
                                 <div class="row mb-2">
                                     <div class="col-8">Current Price</div>
-                                    <div class="col-4 text-end">570.15</div>
+                                    <div class="col-4 text-end">{{data.current_price}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Net Profit Annual</div>
-                                    <div class="col-4 text-end">14,145.46</div>
+                                    <div class="col-8">Day SMA 50</div>
+                                    <div class="col-4 text-end">{{data.day_sma_50}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Operating Profit Margin Qtr Percent</div>
-                                    <div class="col-4 text-end">99.29</div>
+                                    <div class="col-8">Day SMA 200</div>
+                                    <div class="col-4 text-end">{{data.day_sma_200}}</div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-8">ROE Annual Percent</div>
-                                    <div class="col-4 text-end">20.56</div>
+                                <div class="row mb-2">
+                                    <div class="col-8">Beta 1year</div>
+                                    <div class="col-4 text-end">{{data.beta_1year}}</div>
                                 </div>
-                                <button class="btn btn-secondary w-100">Learn More</button>
+                              
+                                {% comment %} <button class="btn btn-secondary w-100">Learn More</button> {% endcomment %}
                             </div>
                         </div>
                     </div>
                     <!-- Stock Card 1 -->
+                    {% endfor %}
     
                 </div>
             </section>
             <section id="9">
                 <div class="row">
+                    {% for data in strong_revenue_growth_stocks %}
                     <!-- Stock Card 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">REC Ltd. Section 1</h5>
+                                <h5 class="card-title">{{data.stock_name}}</h5>
+                                <p class="text-muted">{{data.nsecode}}<span class="float-end">{{data.bsecode}}</span></p>
+                             
                                 <div class="row mb-2">
                                     <div class="col-8">Current Price</div>
-                                    <div class="col-4 text-end">570.15</div>
+                                    <div class="col-4 text-end">{{data.current_price}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Net Profit Annual</div>
-                                    <div class="col-4 text-end">14,145.46</div>
+                                    <div class="col-8">Revenue Growth Annual Percent</div>
+                                    <div class="col-4 text-end">{{data.revenue_growth_annual_yoy_percent}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Operating Profit Margin Qtr Percent</div>
-                                    <div class="col-4 text-end">99.29</div>
+                                    <div class="col-8">Net Profit Annual Percent</div>
+                                    <div class="col-4 text-end">{{data.net_profit_annual_yoy_growth_percent}}</div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-8">ROE Annual Percent</div>
-                                    <div class="col-4 text-end">20.56</div>
-                                </div>
-                                <button class="btn btn-secondary w-100">Learn More</button>
+                              
+                              
+                                {% comment %} <button class="btn btn-secondary w-100">Learn More</button> {% endcomment %}
                             </div>
                         </div>
                     </div>
                     <!-- Stock Card 1 -->
-    
+                    {% endfor %}
                 </div>
             </section>
             <section id="10">
                 <div class="row">
+                    {% for data in top_gainers %}
                     <!-- Stock Card 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">REC Ltd. Section 1</h5>
+                                <h5 class="card-title">{{data.stock_name}}</h5>
+                                <p class="text-muted">{{data.nsecode}}<span class="float-end">{{data.bsecode}}</span></p>
+                             
                                 <div class="row mb-2">
                                     <div class="col-8">Current Price</div>
-                                    <div class="col-4 text-end">570.15</div>
+                                    <div class="col-4 text-end">{{data.current_price}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Net Profit Annual</div>
-                                    <div class="col-4 text-end">14,145.46</div>
+                                    <div class="col-8">Day ROC 21</div>
+                                    <div class="col-4 text-end">{{data.day_roc21}}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-8">Operating Profit Margin Qtr Percent</div>
-                                    <div class="col-4 text-end">99.29</div>
+                                    <div class="col-8">Day MACD </div>
+                                    <div class="col-4 text-end">{{data.day_macd}}</div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-8">ROE Annual Percent</div>
-                                    <div class="col-4 text-end">20.56</div>
+                                <div class="row mb-2">
+                                    <div class="col-8">Day SMA 30</div>
+                                    <div class="col-4 text-end">{{data.day_sma_30}}</div>
                                 </div>
-                                <button class="btn btn-secondary w-100">Learn More</button>
+                                <div class="row mb-2">
+                                    <div class="col-8">Day SMA 50</div>
+                                    <div class="col-4 text-end">{{data.day_sma_50}}</div>
+                                </div>
+                              
+                                {% comment %} <button class="btn btn-secondary w-100">Learn More</button> {% endcomment %}
                             </div>
                         </div>
                     </div>
                     <!-- Stock Card 1 -->
-    
+                    {% endfor %}
                 </div>
             </section>
         </div>
