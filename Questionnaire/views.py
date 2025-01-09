@@ -7,15 +7,6 @@ from django.contrib.auth.decorators import login_required
 from .models import PersonalInformation, IncomeDetails, Expenses, SIGoal, UserQus
 # Create your views here.
 def home(request): 
-    if request.user.is_authenticated:
-        user = User.objects.get(username=request.user)
-        try:
-            user_qus = UserQus.objects.get(user=user)
-        except Exception as e:
-            messages.error(request, f"Error: {e}")
-            return render(request, 'home.html')
-        if not user_qus.flag:
-            messages.info(request, "Please complete the questionnaire to proceed")
     return render(request, 'home.html')
 
 @login_required(login_url='sign_in') 
