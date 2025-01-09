@@ -23,22 +23,29 @@ Portfolio
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="{% url 'update_create_portfolio' %}" method="POST">
+            {% csrf_token %}
             <div class="mb-3">
               <label for="stockName" class="form-label">Stock Name</label>
-              <input type="text" class="form-control" id="stockName" aria-describedby="stockName">
+          
+              <select name="name" class="form-select" id="stockName" required>
+                <option selected disabled>Select Stock</option>
+                {% for data in stock_names_option %}
+                <option value="{{ data }}">{{ data }}</option>
+                {% endfor %}
+              </select>
             </div>
             <div class="mb-3">
               <label for="stockQty" class="form-label">Stock Quantity</label>
-              <input type="number" class="form-control" id="stockQty">
+              <input type="number" name="quantity" class="form-control" id="stockQty" required>
             </div>
             <div class="mb-3">
               <label for="stockPrice" class="form-label">Stock Price</label>
-              <input type="number" class="form-control" id="stockPrice">
+              <input type="number" name="price" class="form-control" id="stockPrice" required>
             </div>
             <div class="mb-3">
               <label for="stockDate" class="form-label">Stock Purchase Date</label>
-              <input type="date" class="form-control" id="stockDate">
+              <input type="date" name="buy_date" class="form-control" id="stockDate" required>
             </div>
           
         </div>
@@ -56,24 +63,29 @@ Portfolio
       <div class="col-lg-4 col-md-6">
         <h4>Current Portfolio</h4>
         <div class="row">
+          {% for data in user_stocks %}
          <!-- Card Start-->
-          <div class="col-12 mb-4">
+          <div class="col-12 mb-2">
             <div class="card">
               <div class="card-body">
                 <div class="d-flex justify-content-between">
-                  <h5 class="mb-1">Manbro Industries Ltd.</h5>
+                  <h5 class="mb-1">{{ data.name }}</h5>
                   <span class="text-success bg-success bg-opacity-25 py-1 px-2 rounded-pill">+5 %</span>
                 </div>
-                <small class="text-secondary">Qty: 100</small>
+                <div class="d-flex justify-content-between mt-2">
+                  <small class="text-secondary">Qty: {{ data.quantity }}</small>
+                  <small class="text-secondary">{{ data.buy_date }}</small>
+                </div>
+                
               </div>
             </div>
           </div>
-        </div>
           <!-- Card End-->
-  
+          {% endfor %}
+        </div>
+
       </div>
-  
-  
+
       <div class="col-lg-8 col-md-6">
         <h4>AI-Driven Investment Advice</h4>
         <div class="row">

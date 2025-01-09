@@ -87,12 +87,9 @@ Questionnaire
                         <label for="monthly_income" class="form-label">What is your monthly net income (after taxes and deductions)?</label>
                         <input type="number" name="monthly_income" class="form-control" id="monthly_income" required>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="other_income" class="form-label">Do you have any other sources of income?</label>
-                        <select name="other_income" class="form-select" id="other_income" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
+                        <input type="text"  name="other_income" class="form-control" id="other_income" required>
                     </div>
 
                     <div class="col-md-6">
@@ -104,10 +101,7 @@ Questionnaire
                             <option value="Others">Others</option>
                         </select>
                     </div>
-                    <div class="col-md-6">
-                        <label for="other_income_amount" class="form-label">If yes, specify the amount of income</label>
-                        <input type="number" name="other_income_amount" class="form-control" id="other_income_amount" required>
-                    </div>
+                  
                     <div class="col-md-6">
                         <label for="other_income_frequency" class="form-label">If yes, specify the frequency of income</label>
                         <select name="other_income_frequency" class="form-select" id="other_income_frequency" required>
@@ -167,15 +161,19 @@ Questionnaire
                         <label for="entertainment" class="form-label">Entertainment</label>
                         <input type="number" name="entertainment" class="form-control" id="entertainment" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="savings" class="form-label">Savings</label>
-                        <input type="number" name="savings" class="form-control" id="savings" required>
-                    </div>
+               
                     <div class="col-md-6">
                         <label for="loan" class="form-label">Loan Payment (if any)</label>
                         <input type="number" name="loan" class="form-control" id="loan" required>
                     </div>
-
+                    <div class="col-md-6">
+                        <label for="loan_tenure" class="form-label ">Loan Tenure (if any)</label>
+                        <input type="text" name="loan_tenure" class="form-control" id="loan_tenure" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="loan_interest" class="form-label">Loan Interest Rate (if any)</label>
+                        <input type="text" name="loan_interest" class="form-control" id="loan_interest" required>
+                    </div>
 
 
                     <div class="col-12 text-center mt-4">
@@ -202,21 +200,14 @@ Questionnaire
                 <div class="row g-2">
                     
                     <div class="col-md-6">
-                        <label for="savings_goal" class="form-label">What is your savings goal?</label>
-                        <input type="number" name="savings_goal" class="form-control" id="savings_goal" required>
+                        <label for="prioritization" class="form-label">How do you prioritize savings and investments?</label>
+                        <input type="text" name="prioritization" class="form-control" id="prioritization" placeholder="Saving for emergencies and investment in mutual funds" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="investment_goal" class="form-label">What is your investment goal?</label>
-                        <input type="number" name="investment_goal" class="form-control" id="investment_goal" required>
+                        <label for="career_changes" class="form-label">What is your career change plan?</label>
+                        <input type="text" name="career_changes" class="form-control" id="career_changes" placeholder="Expected raise in 6 months" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="investment_horizon" class="form-label">What is your investment horizon?</label>
-                        <select name="investment_horizon" class="form-select" id="investment_horizon" required>
-                            <option value="short_term">Short Term</option>
-                            <option value="medium_term">Medium Term</option>
-                            <option value="long_term">Long Term</option>
-                        </select>
-                    </div>
+
                     <div class="col-md-6">
                         <label for="risk_tolerance" class="form-label">What is your risk tolerance?</label>
                         <select name="risk_tolerance" class="form-select" id="risk_tolerance" required>
@@ -225,90 +216,18 @@ Questionnaire
                             <option value="high">High</option>
                         </select>
                     </div>
+                   
                     <div class="col-md-6">
-                        <label for="investment_knowledge" class="form-label">What is your knowledge of investments?</label>
-                        <select name="investment_knowledge" class="form-select" id="investment_knowledge" required>
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="advanced">Advanced</option>
-                        </select>
+                        <label for="major_purchases" class="form-label">What are the major purchases you are planning for?</label>
+                        <input type="text" name="major_purchases" class="form-control" id="major_purchases" placeholder="Planning to buy a car in 1 year" required>
                     </div>
+                  
                     <div class="col-md-6">
-                        <label for="investment_experience" class="form-label">What is your experience with investments?</label>
-                        <select name="investment_experience" class="form-select" id="investment_experience" required>
-                            <option value="none">None</option>
-                            <option value="some">Some</option>
-                            <option value="extensive">Extensive</option>
-                        </select>
+                        <label for="life_events" class="form-label">What are the major life events you are planning for?</label>
+                        <input type="text" name="life_events" class="form-control" id="life_events" placeholder="Brother's married in 2 years" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="investment_objective" class="form-label">What is your investment objective?</label>
-                        <select name="investment_objective" class="form-select" id="investment_objective" required>
-                            <option value="growth">Growth</option>
-                            <option value="income">Income</option>
-                            <option value="speculation">Speculation</option>
-                            <option value="preservation">Preservation</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="investment_strategy" class="form-label">What is your investment strategy?</label>
-                        <select name="investment_strategy" class="form-select" id="investment_strategy" required>
-                            <option value="passive">Passive</option>
-                            <option value="active">Active</option>
-                            <option value="value">Value</option>
-                            <option value="growth">Growth</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="investment_style" class="form-label">What is your investment style?</label>
-                        <select name="investment_style" class="form-select" id="investment_style" required>
-                            <option value="conservative">Conservative</option>
-                            <option value="moderate">Moderate</option>
-                            <option value="aggressive">Aggressive</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="investment_amount" class="form-label">What is the amount you are willing to invest?</label>
-                        <input type="number" name="investment_amount" class="form-control" id="investment_amount" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="investment_frequency" class="form-label">What is the frequency of investment?</label>
-                        <select name="investment_frequency" class="form-select" id="investment_frequency" required>
-                            <option value="monthly">Monthly</option>
-                            <option value="quarterly">Quarterly</option>
-                            <option value="annually">Annually</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="investment_start_date" class="form-label">When do you plan to start investing?</label>
-                        <input type="date" name="investment_start_date" class="form-control" id="investment_start_date" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="investment_end_date" class="form-label">When do you plan to stop investing?</label>
-                        <input type="date" name="investment_end_date" class="form-control" id="investment_end_date" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="investment_account" class="form-label">Do you have an investment account?</label>
-                        <select name="investment_account" class="form-select" id="investment_account" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="investment_account_type" class="form-label">If yes, specify the type of account</label>
-                        <select name="investment_account_type" class="form-select" id="investment_account_type" required>
-                            <option value="brokerage">Brokerage</option>
-                            <option value="retirement">Retirement</option>
-                            <option value="education">Education</option>
-                            <option value="others">Others</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="investment_account_balance" class="form-label">If yes, specify the account balance</label>
-                        <input type="number" name="investment_account_balance" class="form-control" id="investment_account_balance" required>
-                    </div>
-
-
+                 
+        
                     <div class="col-12 text-center mt-4">
                         <button class="btn btn-secondary mx-2 previous">Previous</button>
                         <button class="btn btn-success mx-2 next">Next</button>

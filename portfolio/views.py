@@ -1,6 +1,36 @@
-from django.shortcuts import render
-
+from django.shortcuts import render,redirect
+from .models import Portfolio, UserStock
+from django.contrib.auth.decorators import login_required
+from dashboard.models import StockData
 # Create your views here.
 
+@login_required(login_url='sign_in') 
 def portfolio_view(request):
-    return render(request, 'portfolio.html')
+    user = request.user
+    portfolio, created = Portfolio.objects.get_or_create(user=user)
+    if created:
+        portfolio.save()
+    stock_names_option = StockData.objects.values_list('stock_name', flat=True)
+    user_stocks = portfolio.stocks.all()
+    return render(request, 'portfolio.html', {
+        'portfolio': portfolio,
+        'stock_names_option': stock_names_option,
+        'user_stocks': user_stocks,
+        })
+
+@login_required(login_url='sign_in') 
+def update_create_portfolio(request):
+    user = request.user
+    portfolio, created = Portfolio.objects.get_or_create(user=user)
+    if created:
+        portfolio.save()
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        price = request.POST.get('price')
+        quantity = request.POST.get('quantity')
+        buy_date = request.POST.get('buy_date')
+        stock = UserStock.objects.create(name=name, price=price, quantity=quantity, buy_date=buy_date)
+        stock.save()
+        portfolio.stocks.add(stock)
+        portfolio.save()
+    return redirect('portfolio')

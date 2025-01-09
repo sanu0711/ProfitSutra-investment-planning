@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from dashboard.models import StockData
 from django.db.models import F
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='sign_in')
 def trending_view(request):
     undervalued_stocks = StockData.objects.filter(
         pe_ttm_price_to_earnings__lt=15, 

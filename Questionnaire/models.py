@@ -9,6 +9,8 @@ class PersonalInformation(models.Model):
     marital_status = models.CharField(max_length=100, null=True, blank=True)
     dependents = models.IntegerField(null=True, blank=True, default=0)
     employment_status = models.CharField(max_length=100, null=True, blank=True)
+    monthly_income = models.FloatField(null=True, blank=True)
+    other_income = models.CharField(max_length=300, null=True, blank=True)
 
     def __str__(self):
         return self.first_name
@@ -48,6 +50,8 @@ class Expenses(models.Model):
     entertainment = models.FloatField(null=True, blank=True)
     savings = models.FloatField(null=True, blank=True)
     loan = models.FloatField(null=True, blank=True)
+    loan_tenure = models.CharField(max_length=100, null=True, blank=True)
+    loan_interest_rate = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return f'{self.id}'
@@ -59,10 +63,14 @@ class Expenses(models.Model):
         
 
 class SIGoal(models.Model):
+    risk_tolerance = models.CharField(max_length=100, null=True, blank=True)
+    prioritization = models.CharField(max_length=100, null=True, blank=True)
+    career_changes = models.CharField(max_length=100, null=True, blank=True)
+    major_purchases = models.CharField(max_length=100, null=True, blank=True)
+    life_events = models.CharField(max_length=100, null=True, blank=True)
     savings_goal = models.FloatField(null=True, blank=True)
     investment_goal = models.FloatField(null=True, blank=True)
     investment_horizon = models.CharField(max_length=100, null=True, blank=True)
-    risk_tolerance = models.CharField(max_length=100, null=True, blank=True)
     investment_knowledge = models.CharField(max_length=100, null=True, blank=True)
     investment_experience = models.CharField(max_length=100, null=True, blank=True)
     investment_objective = models.CharField(max_length=100, null=True, blank=True)
@@ -92,6 +100,7 @@ class UserQus(models.Model):
     income_details = models.ForeignKey(IncomeDetails, on_delete=models.CASCADE, null=True, blank=True)
     expenses = models.ForeignKey(Expenses, on_delete=models.CASCADE, null=True, blank=True)
     savings_investment_goals = models.ForeignKey(SIGoal, on_delete=models.CASCADE, null=True, blank=True)
+    advice = models.TextField(null=True, blank=True)
     flag = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -103,3 +112,4 @@ class UserQus(models.Model):
         db_table = 'user_questionnaire'
         verbose_name = "User Questionnaire"
         verbose_name_plural = "User Questionnaire"
+        

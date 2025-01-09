@@ -4,7 +4,7 @@ from langchain.chains import LLMChain
 
 # API and model configuration
 model_name = "gemini-1.5-pro"
-GEMINI_API_KEY = "AIzaSyC1YGJ7w9jy-UehVXK-G58R7hIqq2nmUdA"
+GEMINI_API_KEY = "<YOUR_GEMINI API KEY>"
 
 # Initialize the Google Gemini (Google GenAI) model
 chat_model = ChatGoogleGenerativeAI(

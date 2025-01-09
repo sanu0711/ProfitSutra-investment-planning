@@ -9,6 +9,22 @@ def dashboard_view(request):
     if user_info.flag == False:
         return render(request, 'questionnaire.html')
     expanse = user_info.expenses
+    
+    
+  
+    context = {
+        'raw_data': user_info
+    }
+    return render(request, 'dashboard.html', context)
+
+
+
+
+def dashboard_view_old(request):
+    user_info = UserQus.objects.get(user=request.user)
+    if user_info.flag == False:
+        return render(request, 'questionnaire.html')
+    expanse = user_info.expenses
     expense_data ={
         'labels' : [],
         'values'  : []
@@ -73,9 +89,11 @@ def dashboard_view(request):
     
     # print(user_data)
     
+  
     context = {
         'user_info': user_data[0],
         'expense_data': expense_data,
-        'total_expense': sum(expense_data['values'])
+        # 'total_expense': total_expense,
+        'raw_data': user_info
     }
     return render(request, 'dashboard.html', context)
