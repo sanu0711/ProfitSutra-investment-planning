@@ -7,7 +7,7 @@ Home
 {% block main %}
    <!-- Hero Section -->
    <section id="hero" class="mt-4">
-    <div class="container" data-aos="zoom-out" data-aos-delay="200">
+    <div class="container-fluid" data-aos="zoom-out" data-aos-delay="200">
       <div class="row gy-4">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" >
           <h1>Welcome to ProfitSutra</h1>
@@ -25,7 +25,8 @@ Home
 
   </section><!-- /Hero Section -->
 
-<div class="container">
+<div class="container-fluid">
+
     <section id="features" class="mt-5" >
 
         <h2 class="text-center mb-4">Why Choose ProfitSutra?</h2>
@@ -59,6 +60,58 @@ Home
             </div>
         </div>
     </section>
+
+
+     <!-- Team Section -->
+     <section id="team" class="team section light-background">
+
+    
+      <div class="container-fluid text-center mt-5" data-aos="fade-up">
+        <h2>Team Member</h2>
+        <p>Our team of experts is here to guide you through your investment journey.</p>
+      </div>
+
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card  mb-3 bg-transparent border-0" data-aos="fade-up" data-aos-delay="100">
+              <div class="row g-0">
+                <div class="col-md-3">
+                  <img src="{% static 'img/ay.png' %}" class="img-thumbnail rounded-circle" alt="...">
+                </div>
+                <div class="col-md-9 text-center align-self-center">
+                  <div class="card-body text-md-start">
+                    <h5 class="card-title">Abhishek Yadav</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Software Developer</h6>               
+                    <p class="card-text">Full Stack Developer with expertise in Django, and Machine Learning.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Team Member -->
+
+          <div class="col-md-6">
+            <div class="card  mb-3 bg-transparent border-0" data-aos="fade-up" data-aos-delay="200">
+              <div class="row g-0">
+                <div class="col-md-3">
+                  <img src="{% static 'img/as.png' %}" class="img-thumbnail rounded-circle" alt="...">
+                </div>
+                <div class="col-md-9 text-center align-self-center">
+                  <div class="card-body text-md-start">
+                    <h5 class="card-title">Abhishek Saraswat</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">ML Engineer</h6>
+                    <p class="card-text">Machine Learning Engineer with expertise in NLP and GenAI models.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Team Member -->
+        </div>
+
+      </div>
+
+    </section><!-- /Team Section -->
 
  
 
