@@ -10,9 +10,12 @@ import json
 def recom_helper():
     data = []
     tickers = ['20MICRONS','360ONE','3MINDIA','INFOLLION','TDPOWERSYS']
+    headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
     for ticker in tickers:
         url = f"http://20.197.4.173/stock_details/{ticker}"
-        response = requests.get(url)
+        response = requests.get(url, headers=headers)
         data.append(json.loads(response.json()))
        
     return data
