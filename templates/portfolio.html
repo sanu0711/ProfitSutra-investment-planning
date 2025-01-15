@@ -10,9 +10,9 @@ Portfolio
   <p class="text-muted">AI-Driven Investment Advice & Portfolio Management</p>
     
 <!-- Portfolio Addition -->
-<button type="button" class="btn btn-outline-success float-end" data-bs-toggle="modal" data-bs-target="#addition">
-  Add Stock
-  </button>
+  <p><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addition">
+    Add Stock
+    </button></p>
   
   <!-- Modal -->
   <div class="modal fade" id="addition" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -58,9 +58,9 @@ Portfolio
     </div>
   </div>
  <!-- Portfolio Addition End -->
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <div class="row mt-4">
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-4 col-md-6 col-12">
         <h4>Current Portfolio</h4>
         <div class="row">
           {% for data in user_stocks %}
@@ -70,7 +70,7 @@ Portfolio
               <div class="card-body">
                 <div class="d-flex justify-content-between">
                   <h5 class="mb-1">{{ data.name }}</h5>
-                  <span class="text-success bg-success bg-opacity-25 py-1 px-2 rounded-pill">+5 %</span>
+                  <span class="text-success  bg-opacity-25 badge text-bg-success">+5%</span>
                 </div>
                 <div class="d-flex justify-content-between mt-2">
                   <small class="text-secondary">Qty: {{ data.quantity }}</small>
@@ -83,29 +83,35 @@ Portfolio
           <!-- Card End-->
           {% endfor %}
         </div>
-
       </div>
 
       <div class="col-lg-8 col-md-6">
         <h4>AI-Driven Investment Advice</h4>
-        <div class="row">
+        <div class="row gy-2">
+          {% comment %} {{recom}} {% endcomment %}
+          {% for data in recom %}
+          
+         
           <!-- Card Start-->
            <!-- Button trigger modal -->
-              <button type="button" class="btn bg-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" class="btn bg-white" data-bs-toggle="modal" data-bs-target="#exampleModal{{forloop.counter}}">
                 <div class="d-flex justify-content-between">
-                  <span class="fs-6 fw-bold">Manbro Industry LTD </span>
-                  <span class="text-end  text-danger bg-danger bg-opacity-25 py-1 px-2 rounded-pill">
-                    <i class="bi bi-graph-down-arrow "></i> Sell
+                  <span class="fs-6 fw-bold">{{data.stock_name}}</span>
+                  <span class="text-end  text-success badge text-bg-success bg-opacity-25">
+                    <i class="bi bi-graph-up-arrow "></i> Buy
                       </span>
+                      
                 </div>
+                  <span class="fs-6 float-start">Sector : {{data.Analyst.0.Sector}}</span>
+               
               </button>
   
               <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+              <div class="modal fade" id="exampleModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
                   <div class="modal-content bg-light">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Manbro Industry LTD </h1>
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">{{data.stock_name}}</h1>
   
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -114,49 +120,67 @@ Portfolio
                       <div class="card">
                         <div class="card-body">
                           <h5 class="card-title">Fundamental Analysis</h5>
-                          <h6 class="card-subtitle mb-2 text-body-secondary">Fundamental Analysis of Manbro Industry LTD</h6>
+                          {% comment %} <h6 class="card-subtitle mb-2 text-body-secondary">Fundamental Analysis </h6> {% endcomment %}
                           <table class="table">
                             <thead>
                               <tr class="table-light">
-                                <th scope="col">metric</th>
-                                <th scope="col">sector</th>
-                                <th scope="col">compA</th>
-                                <th scope="col">compB</th>
+                                <th scope="col">Metric</th>
+                                <th scope="col">Data</th>
                               </tr>
                             </thead>
                             <tbody>
+                              {% for k,v in data.fundamental_analysis.stock_data.items %}
                               <tr>
-                                <td>PE</td>
-                                <td>20</td>
-                                <td>25</td>
-                                <td>30</td>
+                                <td>{{k}}</td>
+                                <td>{{v}}</td>
                               </tr>
-                              <tr>
-                                <td>ROE</td>
-                                <td>20</td>
-                                <td>25</td>
-                                <td>30</td>
-                              </tr>
-                              <tr>
-                                <td>ROCE</td>
-                                <td>20</td>
-                                <td>25</td>
-                                <td>30</td>
-                              </tr>
-                              <tr>
-                                <td>Debt to Equity</td>
-                                <td>20</td>
-                                <td>25</td>
-                                <td>30</td>
-                              </tr>
-                              <tr>
-                                <td>Dividend Yield</td>
-                                <td>20</td>
-                                <td>25</td>
-                                <td>30</td>
-                              </tr>
+                              {% endfor %}
+                        
+                              
                             </tbody>
                           </table>
+                       
+                        </div>
+                      </div>
+                      <!-- Card End-->
+
+                       <!-- Card Start-->
+                       <div class="card mt-4">
+                        <div class="card-body">
+                          <h5 class="card-title">Competitor Analysis</h5>
+                          {% comment %} <h6 class="card-subtitle mb-2 text-body-secondary">Fundamental</h6> {% endcomment %}
+                          <div class="table-responsive">
+                            <table class="table  table-hover">
+                              <thead>
+                                <tr class="table-light">
+                                  <th scope="col">Stock_Name</th>
+                                  <th scope="col">Current Price</th>
+                                  <th scope="col">Market Capitalization</th>
+                                  <th scope="col">P/E Ratio</th>
+                                  <th scope="col">P/B Ratio</th>
+                                  <th scope="col">ROE</th>
+                                  <th scope="col">Net Revenue</th>
+                                  <th scope="col">Annual Net Profit</th>
+                                  <th scope="col">Operating Profit Margin</th>
+                                  <th scope="col">Price to Book Value</th>
+  
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for analy in data.competitor_analysis %}
+                                <tr>
+                                  {% for d,v in analy.items %}
+                                  <td>{{v}}</td>
+                                  {% endfor %}
+                                  
+                                  
+                                </tr>
+                                {% endfor %}
+                          
+                                
+                              </tbody>
+                            </table>
+                          </div>
                        
                         </div>
                       </div>
@@ -167,12 +191,17 @@ Portfolio
                           <div class="card mt-4">
                             <div class="card-body">
                               <h5 class="card-title">News & Sentiments</h5>
-                              {% comment %} <h6 class="card-subtitle mb-2 text-body-secondary">News & Sentiments of Manbro Industry LTD</h6> {% endcomment %}
+                               {% for news in data.News %}
                                <div class="bg-light p-3">
-                                  <h6 class="card-subtitle mb-2 text-body-secondary">News Title</h6>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               
-                               </div>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">{{news.title}} <span class="float-end badge  bg-opacity-25 {% if news.sentiment_score > 0 %}text-success text-bg-success  {% elif news.sentiment_score < 0 %} text-bg-danger text-danger {% else %}text-muted text-bg-secondary{% endif %}">{{news.sentiment_score}}</span></h6>
+                                {% for tag in news.tags %}
+                                <span class="badge text-bg-secondary bg-opacity-75">{{tag}}</span>
+                                {% endfor %}
+                                <p class="card-text">{{news.summary}}</p>
+             
+                             </div>
+                               {% endfor %}
+                    
                                     
                             </div>
                           </div>
@@ -187,27 +216,20 @@ Portfolio
                                   <table class="table">
                                     <thead>
                                       <tr>
-                                        <th>Opinion</th>
-                                        <th>	Rating</th>
-                                        <th>	Target Price</th>
+                                        <th>Metrix</th>
+                                        <th>Value</th>
+                                       
                                       </tr>
                                     </thead>
                                     <tbody>
+                                      {% for k,v in data.Analyst.0.items %}
                                       <tr>
-                                        <td class="text-success">Positive</td>
-                                        <td>4.5</td>
-                                        <td>₹ 1000</td>
+                                        <td>{{k}}</td>
+                                        <td>{{v}}</td>
                                       </tr>
-                                      <tr>
-                                        <td class="text-warning">Neutral</td>
-                                        <td>3.5</td>
-                                        <td>₹ 800</td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-danger">Negative</td>
-                                        <td>2.5</td>
-                                        <td>₹ 600</td>
-                                      </tr>
+                                      {% endfor %}
+                                     </tbody>
+                                     
                                    
                                   </table>
                
@@ -227,6 +249,10 @@ Portfolio
                 </div>
               </div>
            <!-- Card End-->
+
+           {% endfor %}
+
+
         </div>
           
     </div>
