@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
-from .models import Portfolio, UserStock
+from .models import Portfolio, UserStock, recommStock
 from django.contrib.auth.decorators import login_required
 from dashboard.models import StockData
 import requests
 import json
+
 # Create your views here.
 
 
@@ -13,10 +14,14 @@ def recom_helper():
     headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
     }
+    recommStock.objects.all().delete()
     for ticker in tickers:
+        
         url = f"http://20.197.4.173/stock_details/{ticker}"
         response = requests.get(url, headers=headers)
         data.append(json.loads(response.json()))
+        recomm = recommStock.objects.create(ticker=ticker, jsondata=json.loads(response.json()))
+        recomm.save()
        
     return data
 
@@ -28,7 +33,12 @@ def portfolio_view(request):
         portfolio.save()
     stock_names_option = StockData.objects.values_list('stock_name', flat=True)
     user_stocks = portfolio.stocks.all()
-    recom = recom_helper()
+    # recom = recom_helper()
+    recom = []
+    db_recom = recommStock.objects.all()
+    for rec in db_recom:
+        recom.append(rec.jsondata)
+        
     return render(request, 'portfolio.html', {
         'portfolio': portfolio,
         'stock_names_option': stock_names_option,

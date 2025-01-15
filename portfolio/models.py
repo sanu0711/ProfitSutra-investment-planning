@@ -35,3 +35,17 @@ class Portfolio(models.Model):
     # @property
     # def total_investment(self):
     #     return sum([stock.total for stock in self.stocks.all()])
+    
+class recommStock(models.Model):
+    ticker = models.CharField(max_length=100)
+    jsondata = models.JSONField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.ticker
+    class Meta:
+        managed = True
+        db_table = 'recomm_stocks'
+        verbose_name_plural = 'Recomm Stocks'
+        verbose_name = 'Recomm Stock'
