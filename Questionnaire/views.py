@@ -29,6 +29,7 @@ def chatbot_view(request):
             return render(request, 'chatbot.html')    
     return render(request, 'chatbot.html')
 
+@login_required(login_url='sign_in')
 def research_view(request):
     if request.method == 'POST':
         question = request.POST.get('question')

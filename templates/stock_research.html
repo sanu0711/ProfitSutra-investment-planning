@@ -23,6 +23,7 @@ Chatbot
         {% comment %} <div class="card-header">IG-Chat</div> {% endcomment %}
         <div class="card-body">
             <div class="conversation-area text-center scroll">
+                {% if response %}
                 <div class="text-end">
                     <p><img src="{% static 'img/default-profile.jpg' %}" alt="Profile" class="rounded-circle" height="25" width="25"></p>
                     <p>{{qus}}</p>
@@ -31,7 +32,7 @@ Chatbot
                 <div class="text-start">
                     <p><img src="{% static 'img/logo/android-icon-192x192.png' %}" alt="Logo" width="25" height="25" class="d-inline-block align-text-center rounded-circle"></p>
                   
-                {% if response %}
+                
                     {{response|safe}}
                 </div>
                 </div>
@@ -40,9 +41,9 @@ Chatbot
                 <div class="container mt-5">
                     <div class="row justify-content-center align-content-center">
                         <div class="col-5 mx-2 alert alert-danger sugg" data-aos="zoom-in" data-aos-delay="100">Fundamental analysis of TCS</div>
-                        <div class="col-5 mx-2 alert alert-success sugg" data-aos="zoom-in" data-aos-delay="200" >Top 5 stocks to buy best for profit</div>
-                        <div class="col-5 mx-2 alert alert-warning sugg" data-aos="zoom-in" data-aos-delay="300"> best 20 stocks and their capital and revlent details </div>
-                        <div class="col-5 mx-2 alert alert-info sugg" data-aos="zoom-in" data-aos-delay="400">details of top 10 stocks having highest marketcap</div>
+                        <div class="col-5 mx-2 alert alert-success sugg" data-aos="zoom-in" data-aos-delay="200" >News analysis of ongc</div>
+                        <div class="col-5 mx-2 alert alert-warning sugg" data-aos="zoom-in" data-aos-delay="300">Give me complete analysis(from all tools) of nmdc </div>
+                        <div class="col-5 mx-2 alert alert-info sugg" data-aos="zoom-in" data-aos-delay="400">Give me technical analysis of TCS</div>
                     </div>
             </div>
 
@@ -68,7 +69,7 @@ Chatbot
             document.querySelector('input[name="question"]').value = item.innerHTML;
         })
     })
-    console.log({{response|safe}});
+    {% comment %} console.log({{response|safe}}); {% endcomment %}
  </script>
  
   
