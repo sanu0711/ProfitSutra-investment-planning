@@ -4,7 +4,8 @@ from django.contrib import messages
 from .tests import chat_to_query
 from .suggestion_questinare import suggestion_to_questnior
 from django.contrib.auth.decorators import login_required
-from .models import PersonalInformation, IncomeDetails, Expenses, SIGoal, UserQus
+from .models import PersonalInformation, IncomeDetails, Expenses, SIGoal, UserQus, QuesHistory
+from .agent_ai_tools import run_agent
 # Create your views here.
 def home(request): 
     return render(request, 'home.html')
@@ -15,13 +16,37 @@ def chatbot_view(request):
         question = request.POST.get('question')
         if question:
             response = chat_to_query(question)
+            # response = 'Give me complete analysis(from all tools) of nmdc'
+            # agent2 = run_agent(response)
+            # print(agent2)
             return render(request, 'chatbot.html', {
                 'response': response,
+                # 'response': agent2,
+                
                 'qus': question})
         else:
             messages.error(request, "Please enter a question to get response")
             return render(request, 'chatbot.html')    
     return render(request, 'chatbot.html')
+
+def research_view(request):
+    if request.method == 'POST':
+        question = request.POST.get('question')
+        if question:
+            # response = 'Give me complete analysis(from all tools) of nmdc'
+            agent2 = run_agent(question)
+            # print(agent2)
+            output = agent2
+            output = output.replace("```html", "")
+            output = output.replace("```", "")
+            output = output.replace("\n", "")
+            return render(request, 'stock_research.html', {
+                'response': output,
+                'qus': question})
+        else:
+            messages.error(request, "Please enter a question to get response")
+            return render(request, 'stock_research.html')    
+    return render(request, 'stock_research.html')
   
 @login_required(login_url='sign_in')
 def questionnaire_view(request):
@@ -89,12 +114,30 @@ def questionnaire_view(request):
         }
         try:
             gen_ai = suggestion_to_questnior(user_data)
+            QuesHistory.objects.create(user=request.user, user_input=user_data, ai_output=gen_ai)
             return render(request, 'questionnaire_out.html', {'gen_ai': gen_ai})
         except Exception as e:
             messages.error(request, f"Error: {e}")
             return render(request, 'questionnaire.html')
     return render(request, 'questionnaire.html')
 
+@login_required(login_url='sign_in')
+def ques_history_view(request):
+    if QuesHistory.objects.filter(user=request.user).exists():
+        history = QuesHistory.objects.filter(user=request.user)
+        return render(request, 'ques_history.html', {'history': history})
+    else:
+        messages.info(request, "No history found")
+        return render(request, 'ques_history.html')
+
+@login_required(login_url='sign_in')
+def ques_explore(request, id):
+    if QuesHistory.objects.filter(id=id).exists():
+        history = QuesHistory.objects.get(id=id)
+        return render(request, 'ques_explore.html', {'history': history})
+    else:
+        messages.info(request, "No history found")
+        return render(request, 'ques_history.html')
 
 def questionnaire_view_old(request):
     if not request.user.is_authenticated:

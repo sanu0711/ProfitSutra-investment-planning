@@ -112,4 +112,19 @@ class UserQus(models.Model):
         db_table = 'user_questionnaire'
         verbose_name = "User Questionnaire"
         verbose_name_plural = "User Questionnaire"
+
+class QuesHistory(models.Model): 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user_input = models.JSONField(null=True, blank=True)
+    ai_output = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.user.username
+    class Meta:
+        managed = True
+        db_table = 'questionnaire_history'
+        verbose_name = "Questionnaire History"
+        verbose_name_plural = "Questionnaire History"
         

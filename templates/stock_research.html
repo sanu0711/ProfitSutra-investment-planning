@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Chatbot
+{% endblock title %}
+
+{% block main %}
+<style>
+    .scroll {
+        overflow-y: scroll;
+    } 
+       
+   .conversation-area{
+         height: 70vh;
+         overflow-y: scroll;
+   }
+</style>
+
+ <!-- Chatbot -->
+ <div class="col-lg-12 mt-2">
+    <div class="card shadow-lg">
+        {% comment %} <div class="card-header">IG-Chat</div> {% endcomment %}
+        <div class="card-body">
+            <div class="conversation-area text-center scroll">
+                <div class="text-end">
+                    <p><img src="{% static 'img/default-profile.jpg' %}" alt="Profile" class="rounded-circle" height="25" width="25"></p>
+                    <p>{{qus}}</p>
+                </div>
+                <br>
+                <div class="text-start">
+                    <p><img src="{% static 'img/logo/android-icon-192x192.png' %}" alt="Logo" width="25" height="25" class="d-inline-block align-text-center rounded-circle"></p>
+                  
+                {% if response %}
+                    {{response|safe}}
+                </div>
+                </div>
+                
+                {% else %}
+                <div class="container mt-5">
+                    <div class="row justify-content-center align-content-center">
+                        <div class="col-5 mx-2 alert alert-danger sugg" data-aos="zoom-in" data-aos-delay="100">Fundamental analysis of TCS</div>
+                        <div class="col-5 mx-2 alert alert-success sugg" data-aos="zoom-in" data-aos-delay="200" >Top 5 stocks to buy best for profit</div>
+                        <div class="col-5 mx-2 alert alert-warning sugg" data-aos="zoom-in" data-aos-delay="300"> best 20 stocks and their capital and revlent details </div>
+                        <div class="col-5 mx-2 alert alert-info sugg" data-aos="zoom-in" data-aos-delay="400">details of top 10 stocks having highest marketcap</div>
+                    </div>
+            </div>
+
+                {% endif %}
+            </div>
+            <form action="" method="post">
+                {% csrf_token %}
+            <div class="input-group my-3 ">
+                <input type="text" name="question" class="form-control" placeholder="Type your message here" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="bi bi-arrow-up-circle"></i></button>
+            </div>
+        </form>
+        </div>
+    </div>
+
+ </div>
+<!-- End Chatbot -->
+ <script>
+    var objDiv = document.querySelector(".conversation-area");
+    objDiv.scrollTop = objDiv.scrollHeight;
+    document.querySelectorAll('.sugg').forEach(item => {
+        item.addEventListener('click', event => {
+            document.querySelector('input[name="question"]').value = item.innerHTML;
+        })
+    })
+    console.log({{response|safe}});
+ </script>
+ 
+  
+{% endblock main %}
