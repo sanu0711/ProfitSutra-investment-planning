@@ -8,7 +8,7 @@ load_dotenv()
 
 def suggestion_to_questnior(user_data):
   chat_model = ChatGoogleGenerativeAI(
-    model="gemini-1.5-pro",
+    model="gemini-1.5-flash-8b",
     google_api_key=os.getenv("GEMINI_API_KEY"),
     temperature=0
   )
