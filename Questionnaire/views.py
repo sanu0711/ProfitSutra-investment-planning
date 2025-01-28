@@ -6,8 +6,14 @@ from .suggestion_questinare import suggestion_to_questnior
 from django.contrib.auth.decorators import login_required
 from .models import PersonalInformation, IncomeDetails, Expenses, SIGoal, UserQus, QuesHistory
 from .agent_ai_tools import run_agent
+# from .qus_to_query import chat_to_query
+
+# from dashboard.tests import read_data
+
 # Create your views here.
-def home(request): 
+def home(request):
+    # message = read_data()
+    # print(message) 
     return render(request, 'home.html')
 
 @login_required(login_url='sign_in') 

@@ -60,7 +60,10 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'chatbot' %}">ChatBot</a>
+                <a class="nav-link" href="{% url 'questionnaire' %}">Questionnaire</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'chatbot' %}">Stock Filter</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'research_view' %}">Stock Research</a>
@@ -71,9 +74,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'trending' %}">Trending</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'questionnaire' %}">Questionnaire</a>
-              </li>
+
                 <li class="nav-item ms-2">
                   
                   {% if request.user.is_authenticated %}
@@ -149,7 +150,7 @@
     <!-- Footer -->
      <footer class="footer mt-5">
         <div class="container-fluid bg-body-secondary text-center p-3">
-            <p>&copy; 2021 ProfitSutra. All Rights Reserved.</p>
+            <p>&copy; 2024 ProfitSutra. All Rights Reserved.</p>
         </div>
      </footer>
     <!-- Footer End -->

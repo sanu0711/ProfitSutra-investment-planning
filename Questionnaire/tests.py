@@ -25,7 +25,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-model_name = "gemini-1.5-pro"
+# model_name = "gemini-1.5-pro"
+model_name = "gemini-1.5-flash-8b"
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 def convert_to_float(data):
@@ -242,7 +243,7 @@ def chat_to_query(user_input):
         chain = LLMChain(llm=chat_model, prompt=query_prompt)
         sql_query = chain.run(user_input)
         sql_query = sql_query.replace("```sql\n", "").replace("```", "").strip()
-        print(f"\nGenerated SQL Query:\n{sql_query}")
+        # print(f"\nGenerated SQL Query:\n{sql_query}")
         result = execute_sql_query(sql_query)
         return result
     except Exception as e:
